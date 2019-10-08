@@ -369,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2026489845}
   resourceView: {fileID: 1489102466}
+  upgradeView: {fileID: 552895534}
 --- !u!4 &186232405
 Transform:
   m_ObjectHideFlags: 0
@@ -476,6 +477,7 @@ GameObject:
   - component: {fileID: 552895531}
   - component: {fileID: 552895533}
   - component: {fileID: 552895532}
+  - component: {fileID: 552895534}
   m_Layer: 5
   m_Name: Upgrade view
   m_TagString: Untagged
@@ -540,6 +542,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552895530}
   m_CullTransparentMesh: 0
+--- !u!114 &552895534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552895530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dbae864e8010a540aff838a1bc5e008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeButton: {fileID: 1580746883}
+  _label: {fileID: 855790615}
 --- !u!1 &560882249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1127,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1580746884}
   m_OnClick:
     m_PersistentCalls:
