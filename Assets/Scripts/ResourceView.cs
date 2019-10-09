@@ -12,7 +12,7 @@ namespace CvB
 
         private const string LABEL_FORMAT = "Gold: {0}";
 
-        public void SetGold(int ammount)
+        public void SetGold(string ammount)
         {
             // TODO: Int might not be enough, might have to format it
             _goldLabel.text = string.Format(LABEL_FORMAT, ammount);

@@ -30,7 +30,7 @@ namespace CvB
             });
         }
 
-        public void ShowUpgradeCost(int ammount)
+        public void ShowUpgradeCost(string ammount)
         {
             _label.text = string.Format(UPGRADE_LABEL, ammount);
         }
