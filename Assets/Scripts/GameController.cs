@@ -25,13 +25,13 @@ namespace CvB
         private void SetupUpgradeView()
         {
             CheckIfCanUpgrade();
-            upgradeView.ShowUpgradeCost(BigNumber.AsSufixed(_nextCost));
+            upgradeView.ShowUpgradeCost(NumberFormatter.AsSufixed(_nextCost));
             upgradeView.OnClick += () =>
             {
                 _gold -= _nextCost;
                 _level++;
                 _nextCost = GetUpgradeCost();
-                upgradeView.ShowUpgradeCost(BigNumber.AsSufixed(_nextCost));
+                upgradeView.ShowUpgradeCost(NumberFormatter.AsSufixed(_nextCost));
                 CheckIfCanUpgrade();
                 UpdateResourceView();
                 Debug.Log(_level);
@@ -50,7 +50,7 @@ namespace CvB
 
         private void UpdateResourceView()
         {
-            resourceView.SetGold(BigNumber.AsSufixed(_gold));
+            resourceView.SetGold(NumberFormatter.AsSufixed(_gold));
         }
 
         private void CheckIfCanUpgrade()
@@ -60,12 +60,12 @@ namespace CvB
 
         private float GetGoldIncrement()
         {
-            return 5 * Mathf.Pow(_level, 2.1F);
+            return Mathf.Round(5 * Mathf.Pow(_level, 2.1F));
         }
 
         private float GetUpgradeCost()
         {
-            return 5 * Mathf.Pow(1.08F, _level);
+            return Mathf.Round(5 * Mathf.Pow(1.08F, _level));
         }
     }
 }

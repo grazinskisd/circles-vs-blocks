@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CvB
 {
-    public class BigNumber
+    public class NumberFormatter
     {
         private const string FORMAT = "{0:0.##}{1}";
 
@@ -15,22 +15,6 @@ namespace CvB
         {
             "K", "M", "B", "T", "Q"
         };
-
-        private float _number;
-        private int _base;
-
-        public BigNumber(): this(0, 0) { }
-
-        public BigNumber(float number, int numBase)
-        {
-            _number = number;
-            _base = numBase;
-        }
-
-        public string AsString()
-        {
-            return string.Format(FORMAT,_number, GetSuffix(_base/3));
-        }
 
         public static string AsSufixed(float num)
         {
