@@ -8,16 +8,16 @@ namespace CvB
     public class GameController : MonoBehaviour
     {
         public Enemy enemy;
-        public ResourceView resourceView;
         public UpgradeView upgradeView;
+        public ResourceController resourceController;
+        public FormulaController formula;
 
-        private float _gold = 0;
         private int _level = 1;
         private float _nextCost = 0;
 
         private void Start()
         {
-            _nextCost = GetUpgradeCost();
+            _nextCost = formula.GetUpgradeCost(_level);
             SetupEnemyListener();
             SetupUpgradeView();
         }
@@ -25,16 +25,14 @@ namespace CvB
         private void SetupUpgradeView()
         {
             CheckIfCanUpgrade();
-            upgradeView.ShowUpgradeCost(NumberFormatter.AsSufixed(_nextCost));
+            upgradeView.ShowLevel(_level);
             upgradeView.OnClick += () =>
             {
-                _gold -= _nextCost;
+                resourceController.gold -= _nextCost;
                 _level++;
-                _nextCost = GetUpgradeCost();
-                upgradeView.ShowUpgradeCost(NumberFormatter.AsSufixed(_nextCost));
+                _nextCost = formula.GetUpgradeCost(_level);
+                upgradeView.ShowLevel(_level);
                 CheckIfCanUpgrade();
-                UpdateResourceView();
-                Debug.Log(_level);
             };
         }
 
@@ -42,30 +40,14 @@ namespace CvB
         {
             enemy.OnClicked += () =>
             {
-                _gold += GetGoldIncrement();
-                UpdateResourceView();
+                resourceController.gold += formula.GetGoldIncrement(_level);
                 CheckIfCanUpgrade();
             };
         }
 
-        private void UpdateResourceView()
-        {
-            resourceView.SetGold(NumberFormatter.AsSufixed(_gold));
-        }
-
         private void CheckIfCanUpgrade()
         {
-            upgradeView.SetInteractable(_gold >= _nextCost);
-        }
-
-        private float GetGoldIncrement()
-        {
-            return Mathf.Round(5 * Mathf.Pow(_level, 2.1F));
-        }
-
-        private float GetUpgradeCost()
-        {
-            return Mathf.Round(5 * Mathf.Pow(1.08F, _level));
+            upgradeView.SetInteractable(resourceController.gold >= _nextCost);
         }
     }
 }

@@ -1,51 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 namespace CvB
 {
+    public delegate void CircleAttackEvent();
     public delegate void CircleClickEvent();
 
     public class Circle : MonoBehaviour
     {
-        [SerializeField]
-        private TextMeshPro _label;
+        public TextMeshPro label;
+        public float attackCooldownInSeconds;
 
-        [SerializeField]
-        private Color _enabledColor;
-
-        [SerializeField]
-        private Color _disabledColor;
-
+        // Events
+        public event CircleAttackEvent OnAttack;
         public event CircleClickEvent OnClick;
 
-        private bool _interactable;
+        private int _level;
+        private float _timeSinceAttackInSeconds;
+        private const string LABEL_FORMAT = "Lvl {0}";
+
+        private void Start()
+        {
+            _timeSinceAttackInSeconds = 0;
+        }
 
         private void OnMouseDown()
         {
-            if(_interactable && OnClick != null)
+            if(OnClick != null)
             {
-
+                OnClick();
             }
         }
 
-        public bool interactable
+        private void Update()
         {
-            set
-            {
-                _interactable = value;
-            }
+            _timeSinceAttackInSeconds += Time.deltaTime;
 
+            if(_timeSinceAttackInSeconds >= attackCooldownInSeconds)
+            {
+                _timeSinceAttackInSeconds = 0;
+                if(OnAttack != null)
+                {
+                    OnAttack();
+                }
+            }
+        }
+
+        public int level
+        {
             get
             {
-                return _interactable;
+                return _level;
             }
-        }
 
-        public void SetPrice(string price)
-        {
-            _label.text = price;
+            set
+            {
+                _level = value;
+                label.text = string.Format(LABEL_FORMAT, _level);
+            }
         }
     }
 }
