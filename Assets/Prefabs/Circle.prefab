@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a971467e6426c4997cf26a85e48ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: {fileID: 7447011657131660608}
-  attackCooldownInSeconds: 1
+  _label: {fileID: 7447011657131660608}
+  _attackCooldownInSeconds: 1
+  _labelFormat: Lvl {0}
 --- !u!1 &2546757053670477529
 GameObject:
   m_ObjectHideFlags: 0

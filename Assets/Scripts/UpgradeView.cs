@@ -15,7 +15,8 @@ namespace CvB
         [SerializeField]
         private TMPro.TextMeshProUGUI _label;
 
-        private const string UPGRADE_LABEL = "Lvl {0}";
+        [SerializeField]
+        private string _upgradeLabelFormat = "Lvl {0}";
 
         public event UpgradeViewClickEvent OnClick;
 
@@ -32,7 +33,7 @@ namespace CvB
 
         public void ShowLevel(int level)
         {
-            _label.text = string.Format(UPGRADE_LABEL, level);
+            _label.text = string.Format(_upgradeLabelFormat, level);
         }
 
         public void SetInteractable(bool isInteractable)

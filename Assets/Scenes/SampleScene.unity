@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 2026489845}
   upgradeView: {fileID: 552895534}
-  resourceController: {fileID: 186232407}
+  resources: {fileID: 186232407}
   formula: {fileID: 186232408}
 --- !u!4 &186232405
 Transform:
@@ -529,6 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 1580746883}
   _label: {fileID: 855790615}
+  _upgradeLabelFormat: Lvl {0}
 --- !u!114 &552895535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _goldLabel: {fileID: 1804472436}
+  _labelFormat: 'Gold: {0}'
 --- !u!1 &1561772804
 GameObject:
   m_ObjectHideFlags: 0

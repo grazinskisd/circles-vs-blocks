@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CvB
 {
@@ -9,7 +6,7 @@ namespace CvB
     {
         public Enemy enemy;
         public UpgradeView upgradeView;
-        public ResourceController resourceController;
+        public ResourceController resources;
         public FormulaController formula;
 
         private int _level = 1;
@@ -28,26 +25,31 @@ namespace CvB
             upgradeView.ShowLevel(_level);
             upgradeView.OnClick += () =>
             {
-                resourceController.gold -= _nextCost;
-                _level++;
-                _nextCost = formula.GetUpgradeCost(_level);
-                upgradeView.ShowLevel(_level);
+                PurchaseUpgrade();
                 CheckIfCanUpgrade();
             };
+        }
+
+        private void PurchaseUpgrade()
+        {
+            resources.gold -= _nextCost;
+            _level++;
+            _nextCost = formula.GetUpgradeCost(_level);
+            upgradeView.ShowLevel(_level);
         }
 
         private void SetupEnemyListener()
         {
             enemy.OnClicked += () =>
             {
-                resourceController.gold += formula.GetGoldIncrement(_level);
+                resources.gold += formula.GetGoldIncrement(_level);
                 CheckIfCanUpgrade();
             };
         }
 
         private void CheckIfCanUpgrade()
         {
-            upgradeView.SetInteractable(resourceController.gold >= _nextCost);
+            upgradeView.SetInteractable(resources.gold >= _nextCost);
         }
     }
 }

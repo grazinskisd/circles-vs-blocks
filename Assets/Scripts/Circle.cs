@@ -8,16 +8,20 @@ namespace CvB
 
     public class Circle : MonoBehaviour
     {
-        public TextMeshPro label;
-        public float attackCooldownInSeconds;
+        [SerializeField]
+        private TextMeshPro _label;
 
-        // Events
+        [SerializeField]
+        private float _attackCooldownInSeconds;
+
+        [SerializeField]
+        private string _labelFormat = "Lvl {0}";
+
         public event CircleAttackEvent OnAttack;
         public event CircleClickEvent OnClick;
 
         private int _level;
         private float _timeSinceAttackInSeconds;
-        private const string LABEL_FORMAT = "Lvl {0}";
 
         private void Start()
         {
@@ -36,7 +40,7 @@ namespace CvB
         {
             _timeSinceAttackInSeconds += Time.deltaTime;
 
-            if(_timeSinceAttackInSeconds >= attackCooldownInSeconds)
+            if(_timeSinceAttackInSeconds >= _attackCooldownInSeconds)
             {
                 _timeSinceAttackInSeconds = 0;
                 if(OnAttack != null)
@@ -56,7 +60,7 @@ namespace CvB
             set
             {
                 _level = value;
-                label.text = string.Format(LABEL_FORMAT, _level);
+                _label.text = string.Format(_labelFormat, _level);
             }
         }
     }

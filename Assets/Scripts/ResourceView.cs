@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 namespace CvB
@@ -10,11 +8,12 @@ namespace CvB
         [SerializeField]
         private TextMeshProUGUI _goldLabel;
 
-        private const string LABEL_FORMAT = "Gold: {0}";
+        [SerializeField]
+        private string _labelFormat = "Gold: {0}";
 
         public void SetGold(string ammount)
         {
-            _goldLabel.text = string.Format(LABEL_FORMAT, ammount);
+            _goldLabel.text = string.Format(_labelFormat, ammount);
         }
     }
 }
