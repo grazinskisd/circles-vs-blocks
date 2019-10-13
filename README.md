@@ -16,5 +16,5 @@ if enough gold has been gathered.
 * Since large numbers are used, for more pleasant display a truncated version of the number is used, for example 1000000 is 
 displayed as 1M.
 * Scaling coefficients are downloaded and parsed from a file in my google drive, if they can not be reached for some reason, the app
-will not go past "Loading..." screen. However, it is possible to enable debug mode in the editor and not rely of loading this file.
-* I used this generated color pallete: http://paletton.com/#uid=75z0u0krZuehqDamtvNuGozzjjr
+will not go past "Loading..." screen. However, it is possible to enable debug mode in the editor and not rely on loading this file.
+* I used this generated color pallete: http://paletton.com/#uid=75z1w0krZuehqDamtvNuGozzjjr
