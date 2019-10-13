@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b32c1a3a0df2a4a9ed1eb2fc95b81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2026489845}
+  player: {fileID: 2026489845}
   upgradeView: {fileID: 552895534}
   resources: {fileID: 186232407}
   formula: {fileID: 186232408}
@@ -1589,7 +1589,7 @@ GameObject:
   - component: {fileID: 2026489841}
   - component: {fileID: 2026489845}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1679,6 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c3343d553e1684b8f60d357d0ed68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _level: 1
 --- !u!1001 &211474453656755454
 PrefabInstance:
   m_ObjectHideFlags: 0

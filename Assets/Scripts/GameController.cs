@@ -4,17 +4,16 @@ namespace CvB
 {
     public class GameController : MonoBehaviour
     {
-        public Enemy enemy;
+        public Player player;
         public UpgradeView upgradeView;
         public ResourceController resources;
         public FormulaController formula;
 
-        private int _level = 1;
         private float _nextCost = 0;
 
         private void Start()
         {
-            _nextCost = formula.GetUpgradeCost(_level);
+            _nextCost = formula.GetUpgradeCost(player.level);
             SetupEnemyListener();
             SetupUpgradeView();
         }
@@ -22,7 +21,7 @@ namespace CvB
         private void SetupUpgradeView()
         {
             CheckIfCanUpgrade();
-            upgradeView.ShowLevel(_level);
+            upgradeView.ShowLevel(player.level);
             upgradeView.OnClick += () =>
             {
                 PurchaseUpgrade();
@@ -33,16 +32,16 @@ namespace CvB
         private void PurchaseUpgrade()
         {
             resources.gold -= _nextCost;
-            _level++;
-            _nextCost = formula.GetUpgradeCost(_level);
-            upgradeView.ShowLevel(_level);
+            player.level++;
+            _nextCost = formula.GetUpgradeCost(player.level);
+            upgradeView.ShowLevel(player.level);
         }
 
         private void SetupEnemyListener()
         {
-            enemy.OnClicked += () =>
+            player.OnClicked += () =>
             {
-                resources.gold += formula.GetGoldIncrement(_level);
+                resources.gold += formula.GetGoldIncrement(player.level);
                 CheckIfCanUpgrade();
             };
         }

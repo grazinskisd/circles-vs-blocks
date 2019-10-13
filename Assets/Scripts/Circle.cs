@@ -6,7 +6,7 @@ namespace CvB
     public delegate void CircleAttackEvent();
     public delegate void CircleClickEvent();
 
-    public class Circle : MonoBehaviour
+    public class Circle : Character
     {
         [SerializeField]
         private TextMeshPro _label;
@@ -20,7 +20,6 @@ namespace CvB
         public event CircleAttackEvent OnAttack;
         public event CircleClickEvent OnClick;
 
-        private int _level;
         private float _timeSinceAttackInSeconds;
 
         private void Start()
