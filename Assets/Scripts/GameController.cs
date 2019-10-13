@@ -10,13 +10,20 @@ namespace CvB
         public ResourceController resources;
         public FormulaController formula;
 
+        public GameObject loadingPanel;
+
         private float _nextCost = 0;
 
         private void Start()
         {
-            _nextCost = formula.GetUpgradeCost(player.level);
-            SetupEnemyListener();
-            SetupUpgradeView();
+            loadingPanel.SetActive(true);
+            formula.OnLoaded += () =>
+            {
+                _nextCost = formula.GetUpgradeCost(player.level);
+                SetupEnemyListener();
+                SetupUpgradeView();
+                loadingPanel.SetActive(false);
+            };
         }
 
         private void SetupUpgradeView()
