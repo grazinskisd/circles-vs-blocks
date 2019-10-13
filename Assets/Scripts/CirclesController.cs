@@ -19,6 +19,7 @@ namespace CvB
 
         private List<Circle> _circles;
         private float _nextPrice;
+        private bool _areAllCirclesPurchased;
 
         private void Awake()
         {
@@ -40,9 +41,18 @@ namespace CvB
 
         private void Update()
         {
-            if (resources.gold >= _nextPrice && _circles.Count < positionsList.positions.Count)
+            if (!_areAllCirclesPurchased)
             {
-                purchaseButton.interactable = true;
+                if (resources.gold >= _nextPrice && _circles.Count < positionsList.positions.Count)
+                {
+                    purchaseButton.interactable = true;
+                }
+
+                if (_circles.Count >= positionsList.positions.Count)
+                {
+                    purchaseButton.gameObject.SetActive(false);
+                    _areAllCirclesPurchased = true;
+                }
             }
         }
 
