@@ -9,8 +9,11 @@ namespace CvB
 
     public class CirclesController : MonoBehaviour
     {
+        [Header("Dependencies")]
         public ResourceController resources;
         public FormulaController formula;
+
+        [Header("View")]
         public Button purchaseButton;
 
         [Header("Circles setup")]
@@ -75,7 +78,7 @@ namespace CvB
             {
                 float goldIncrement = formula.GetGoldIncrement(circle.level);
                 resources.gold += goldIncrement;
-                OnCircleAttack?.Invoke(goldIncrement, circle.transform.position);
+                OnCircleAttack?.Invoke(goldIncrement, GetOffsetPosition(circle));
             };
             circle.OnClick += () =>
             {
@@ -84,11 +87,16 @@ namespace CvB
                     float upgradeCost = formula.GetUpgradeCost(circle.level);
                     resources.gold -= upgradeCost;
                     circle.level++;
-                    OnPurchaseUpgrade?.Invoke(-upgradeCost, circle.transform.position);
+                    OnPurchaseUpgrade?.Invoke(-upgradeCost, GetOffsetPosition(circle));
                 }
             };
 
             _circles.Add(circle);
+        }
+
+        private Vector3 GetOffsetPosition(Circle circle)
+        {
+            return circle.transform.position + new Vector3(0, 0, -4);
         }
 
         private float GetPrice()

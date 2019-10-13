@@ -6,12 +6,14 @@ namespace CvB
 
     public class GameController : MonoBehaviour
     {
+        [Header("Dependencies")]
         public Player player;
         public Enemy enemy;
-        public UpgradeView upgradeView;
         public ResourceController resources;
         public FormulaController formula;
 
+        [Header("Views")]
+        public UpgradeView upgradeView;
         public GameObject loadingPanel;
 
         public event GameEvent OnPurchaseUpgrade;

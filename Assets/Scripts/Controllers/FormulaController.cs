@@ -12,8 +12,9 @@ namespace CvB
         [SerializeField]
         private string _url;
 
+        [Header("Debug")]
         [SerializeField]
-        private bool _isDebug;
+        private bool _isDebuging;
 
         [SerializeField]
         private FormulaSetup _debugSetup;
@@ -24,7 +25,7 @@ namespace CvB
 
         private void Start()
         {
-            if (_isDebug)
+            if (_isDebuging)
             {
                 _setup = _debugSetup;
                 StartCoroutine(IssueDelayedOnLoaded());

@@ -33,18 +33,12 @@ namespace CvB
         private void OnMouseDown()
         {
             PlayClickAnimation();
-            if (this.OnClicked != null)
-            {
-                OnClicked();
-            }
+            OnClicked?.Invoke();
         }
 
         private void PlayClickAnimation()
         {
-            if (!_scaleTween.IsPlaying())
-            {
-                _scaleTween.Restart();
-            }
+            _scaleTween.Restart();
         }
     }
 }

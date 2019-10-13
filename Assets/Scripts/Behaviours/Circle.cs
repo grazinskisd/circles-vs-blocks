@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 namespace CvB
 {
@@ -17,6 +18,13 @@ namespace CvB
         [SerializeField]
         private string _labelFormat = "Lvl {0}";
 
+        [Header("Tweening")]
+        [SerializeField]
+        private float _scaleOnAttack;
+
+        [SerializeField]
+        private float _durationInSeconds;
+
         public event CircleAttackEvent OnAttack;
         public event CircleClickEvent OnClick;
 
@@ -29,10 +37,7 @@ namespace CvB
 
         private void OnMouseDown()
         {
-            if(OnClick != null)
-            {
-                OnClick();
-            }
+            OnClick?.Invoke();
         }
 
         private void Update()
@@ -42,10 +47,9 @@ namespace CvB
             if(_timeSinceAttackInSeconds >= _attackCooldownInSeconds)
             {
                 _timeSinceAttackInSeconds = 0;
-                if(OnAttack != null)
-                {
-                    OnAttack();
-                }
+                OnAttack?.Invoke();
+                transform.DOScale(_scaleOnAttack, _durationInSeconds)
+                    .SetLoops(2, LoopType.Yoyo);
             }
         }
 

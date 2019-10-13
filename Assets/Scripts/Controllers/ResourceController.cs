@@ -6,6 +6,7 @@ namespace CvB
 {
     public class ResourceController : MonoBehaviour
     {
+        [Header("View")]
         public ResourceView resourceView;
 
         private float _gold = 0;

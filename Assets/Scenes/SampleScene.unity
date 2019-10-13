@@ -296,9 +296,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 186232409}
   enemy: {fileID: 2026489845}
-  upgradeView: {fileID: 552895534}
   resources: {fileID: 186232407}
   formula: {fileID: 186232408}
+  upgradeView: {fileID: 552895534}
   loadingPanel: {fileID: 1567739865}
 --- !u!4 &186232405
 Transform:
@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _url: drive.google.com/uc?export=download&id=1MqfzG1bmWFIkQWznUmilTtXuVNBAWZuM
-  _isDebug: 0
+  _isDebuging: 0
   _debugSetup:
     goldMultiplier: 5
     goldPower: 2.1
