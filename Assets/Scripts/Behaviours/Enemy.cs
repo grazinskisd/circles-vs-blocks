@@ -22,7 +22,6 @@ namespace CvB
         private void Start()
         {
             _startScale = transform.localScale;
-
             _scaleTween = transform.DOScale(_scaleDownOnClick, _scaleDurationInSeconds)
                 .SetEase(Ease.InOutQuad)
                 .SetLoops(2, LoopType.Yoyo)

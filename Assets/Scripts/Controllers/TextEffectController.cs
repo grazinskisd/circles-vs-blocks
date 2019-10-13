@@ -43,8 +43,13 @@ namespace CvB
             _gameController.OnPurchaseUpgrade += LaunchParticleAtMousePos;
 
             _circlesController.OnPurchaseCircle += LaunchParticleAtMousePos;
-            _circlesController.OnCircleAttack += LaunchParticle;
-            _circlesController.OnPurchaseUpgrade += LaunchParticle;
+            _circlesController.OnCircleAttack += LaunchParticleLow;
+            _circlesController.OnPurchaseUpgrade += LaunchParticleLow;
+        }
+
+        private void LaunchParticleLow(float ammount, Vector3 position)
+        {
+            LaunchParticle(ammount, position, false);
         }
 
         private void AddNewParticleToPool()
@@ -64,7 +69,7 @@ namespace CvB
             _particlePool.Push(particle);
         }
 
-        public void LaunchParticle(float ammount, Vector3 position)
+        public void LaunchParticle(float ammount, Vector3 position, bool isHigh = true)
         {
             if(_particlePool.Count > 0)
             {
@@ -73,7 +78,7 @@ namespace CvB
                 particle.SetColor(ammount > 0 ? _setup.positiveColor : _setup.negativeColor);
                 particle.gameObject.SetActive(true);
                 particle.transform.position = position;
-                particle.Launch(text);
+                particle.Launch(text, GetHeightOffset(isHigh), _setup.particleLifetime);
             }
             else
             {
@@ -82,11 +87,15 @@ namespace CvB
             }
         }
 
+        private float GetHeightOffset(bool isHigh)
+        {
+            return isHigh ? _setup.longHeightOffset : _setup.shortHeightOffset;
+        }
+
         private void LaunchParticleAtMousePos(float ammount)
         {
             Vector3 position = _camera.ScreenToWorldPoint(Input.mousePosition);
-            position.z = -4;
-
+            position.z = _setup.zPositionForMouse;
             LaunchParticle(ammount, position);
         }
 

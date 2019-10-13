@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9373f38ab4d8a4f8f06603306b968e, type: 3}
+  m_Name: Circles setup 1
+  m_EditorClassIdentifier: 
+  prototype: {fileID: 330617979701492615, guid: 449b1b67c0cb5894887605f6df709974,
+    type: 3}
+  startPrice: 100
+  priceMultiplier: 10
+  zOffsetForTextEffect: -4

@@ -330,10 +330,7 @@ MonoBehaviour:
   formula: {fileID: 186232408}
   purchaseButton: {fileID: 1171560073}
   positionsList: {fileID: 163863670}
-  circlePrototype: {fileID: 330617979701492615, guid: 449b1b67c0cb5894887605f6df709974,
-    type: 3}
-  startPrice: 100
-  priceMultiplier: 10
+  setup: {fileID: 11400000, guid: 751db089087eed24780997ef4fd35f01, type: 2}
 --- !u!114 &186232407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,11 +1957,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

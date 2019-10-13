@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -34,11 +33,6 @@ namespace CvB
             {
                 StartCoroutine(DownloadFormulaSetup(_url));
             }
-        }
-
-        private string GetStreamingAssetsPath(string filename)
-        {
-            return Path.Combine(Application.streamingAssetsPath, filename);
         }
 
         public float GetGoldIncrement(int level)

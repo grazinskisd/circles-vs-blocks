@@ -4,8 +4,8 @@ using DG.Tweening;
 
 namespace CvB
 {
-    public delegate void CircleAttackEvent();
-    public delegate void CircleClickEvent();
+    public delegate void CircleAttackEvent(Circle sender);
+    public delegate void CircleClickEvent(Circle sender);
 
     public class Circle : Character
     {
@@ -37,7 +37,7 @@ namespace CvB
 
         private void OnMouseDown()
         {
-            OnClick?.Invoke();
+            OnClick?.Invoke(this);
         }
 
         private void Update()
@@ -47,10 +47,15 @@ namespace CvB
             if(_timeSinceAttackInSeconds >= _attackCooldownInSeconds)
             {
                 _timeSinceAttackInSeconds = 0;
-                OnAttack?.Invoke();
-                transform.DOScale(_scaleOnAttack, _durationInSeconds)
-                    .SetLoops(2, LoopType.Yoyo);
+                Attack();
             }
+        }
+
+        private void Attack()
+        {
+            transform.DOScale(_scaleOnAttack, _durationInSeconds)
+                .SetLoops(2, LoopType.Yoyo);
+            OnAttack?.Invoke(this);
         }
 
         public int level

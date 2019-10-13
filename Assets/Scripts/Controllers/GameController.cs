@@ -30,8 +30,10 @@ namespace CvB
         private void Start()
         {
             loadingPanel.SetActive(true);
+            enemy.gameObject.SetActive(false);
             formula.OnLoaded += () =>
             {
+                enemy.gameObject.SetActive(true);
                 _nextCost = formula.GetUpgradeCost(player.level);
                 SetupEnemyListener();
                 SetupUpgradeView();
@@ -63,11 +65,16 @@ namespace CvB
         {
             enemy.OnClicked += () =>
             {
-                float goldIncrement = formula.GetGoldIncrement(player.level);
-                resources.gold += goldIncrement;
-                CheckIfCanUpgrade();
-                OnAttackEnemy?.Invoke(goldIncrement);
+                PlayerAttack();
             };
+        }
+
+        private void PlayerAttack()
+        {
+            float goldIncrement = formula.GetGoldIncrement(player.level);
+            resources.gold += goldIncrement;
+            CheckIfCanUpgrade();
+            OnAttackEnemy?.Invoke(goldIncrement);
         }
 
         private void CheckIfCanUpgrade()
