@@ -46,6 +46,7 @@ namespace CvB
 
         private void PurchaseUpgrade()
         {
+            LaunchTextParticle("-" + NumberFormatter.AsSufixed(_nextCost));
             resources.gold -= _nextCost;
             player.level++;
             _nextCost = formula.GetUpgradeCost(player.level);
@@ -59,15 +60,13 @@ namespace CvB
                 float goldIncrement = formula.GetGoldIncrement(player.level);
                 resources.gold += goldIncrement;
                 CheckIfCanUpgrade();
-                CreateTextParticle(NumberFormatter.AsSufixed(goldIncrement));
+                LaunchTextParticle("+" + NumberFormatter.AsSufixed(goldIncrement));
             };
         }
 
-        private void CreateTextParticle(string text)
+        private void LaunchTextParticle(string text)
         {
-            Vector3 position = _camera.ScreenToWorldPoint(Input.mousePosition);
-            position.z = -4;
-            textEffect.LaunchParticleWithText(text, position);
+            textEffect.LaunchParticleAtMousePos(text);
         }
 
         private void CheckIfCanUpgrade()

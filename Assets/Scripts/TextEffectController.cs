@@ -56,6 +56,14 @@ namespace CvB
             }
         }
 
+        public void LaunchParticleAtMousePos(string text)
+        {
+            Vector3 position = _camera.ScreenToWorldPoint(Input.mousePosition);
+            position.z = -4;
+
+            LaunchParticleWithText(text, position);
+        }
+
         private void AddParticleToPool(GoldEffectParticle particle)
         {
             particle.gameObject.SetActive(false);

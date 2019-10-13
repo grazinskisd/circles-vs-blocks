@@ -221,3 +221,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _label: {fileID: 3418068405655540306}
+  _localYOffset: 3
+  _lifetimeInSeconds: 0.8

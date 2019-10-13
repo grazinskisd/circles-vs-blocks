@@ -330,6 +330,7 @@ MonoBehaviour:
   resources: {fileID: 186232407}
   formula: {fileID: 186232408}
   purchaseButton: {fileID: 1171560073}
+  textEffect: {fileID: 1096826650}
   positionsList: {fileID: 163863670}
   circlePrototype: {fileID: 330617979701492615, guid: 449b1b67c0cb5894887605f6df709974,
     type: 3}

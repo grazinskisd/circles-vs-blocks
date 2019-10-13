@@ -9,20 +9,26 @@ namespace CvB
         [SerializeField]
         private TextMeshPro _label;
 
-        private Tween _moveTween;
+        [Header("Particle setup")]
+        [SerializeField]
+        private float _localYOffset;
+
+        [SerializeField]
+        private float _lifetimeInSeconds;
+
+        private TweenCallback _onComplete;
 
         public void Initialize(TweenCallback onComplete)
         {
-            _moveTween = transform.DOLocalMoveY(3, 0.5f)
-                .SetAutoKill(false)
-                .OnComplete(onComplete);
-            _moveTween.Pause();
+            _onComplete = onComplete;
         }
 
         public void Launch(string text)
         {
             _label.text = text;
-            _moveTween.Restart();
+            transform
+                .DOLocalMoveY(transform.localPosition.y + _localYOffset, _lifetimeInSeconds)
+                .OnComplete(_onComplete);
         }
     }
 }

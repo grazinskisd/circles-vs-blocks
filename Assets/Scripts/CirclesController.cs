@@ -10,6 +10,7 @@ namespace CvB
         public ResourceController resources;
         public FormulaController formula;
         public Button purchaseButton;
+        public TextEffectController textEffect;
 
         [Header("Circles setup")]
         public CirclePositions positionsList;
@@ -28,12 +29,12 @@ namespace CvB
 
         private void Start()
         {
-            _nextPrice = GetNextPrice();
+            _nextPrice = GetPrice();
 
             purchaseButton.onClick.AddListener(() =>
             {
                 PurchaseCircle();
-                _nextPrice = GetNextPrice();
+                _nextPrice = GetPrice();
                 purchaseButton.interactable = false;
             });
             purchaseButton.interactable = false;
@@ -58,19 +59,31 @@ namespace CvB
 
         private void PurchaseCircle()
         {
-            resources.gold -= GetNextPrice();
+            float price = GetPrice();
+            textEffect.LaunchParticleAtMousePos("-" + NumberFormatter.AsSufixed(price));
+            resources.gold -= price;
+            CreateNewCircle();
+        }
+
+        private void CreateNewCircle()
+        {
             Circle circle = Instantiate(circlePrototype);
             circle.level = 1;
             circle.transform.position = positionsList.positions[_circles.Count];
             circle.OnAttack += () =>
             {
-                resources.gold += formula.GetGoldIncrement(circle.level);
+                float goldIncrement = formula.GetGoldIncrement(circle.level);
+                textEffect.LaunchParticleWithText("+" + NumberFormatter.AsSufixed(goldIncrement), circle.transform.position);
+                resources.gold += goldIncrement;
+
             };
             circle.OnClick += () =>
             {
                 if (resources.gold >= formula.GetUpgradeCost(circle.level))
                 {
-                    resources.gold -= formula.GetUpgradeCost(circle.level);
+                    float upgradeCost = formula.GetUpgradeCost(circle.level);
+                    textEffect.LaunchParticleWithText("-" + NumberFormatter.AsSufixed(upgradeCost), circle.transform.position);
+                    resources.gold -= upgradeCost;
                     circle.level++;
                 }
             };
@@ -78,7 +91,7 @@ namespace CvB
             _circles.Add(circle);
         }
 
-        private float GetNextPrice()
+        private float GetPrice()
         {
             return startPrice * Mathf.Pow(priceMultiplier, _circles.Count);
         }
