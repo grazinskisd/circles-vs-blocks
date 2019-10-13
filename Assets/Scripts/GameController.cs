@@ -2,6 +2,8 @@
 
 namespace CvB
 {
+    public delegate void GameEvent(float ammount);
+
     public class GameController : MonoBehaviour
     {
         public Player player;
@@ -11,7 +13,9 @@ namespace CvB
         public FormulaController formula;
 
         public GameObject loadingPanel;
-        public TextEffectController textEffect;
+
+        public event GameEvent OnPurchaseUpgrade;
+        public event GameEvent OnAttackEnemy;
 
         private float _nextCost = 0;
         private Camera _camera;
@@ -46,7 +50,7 @@ namespace CvB
 
         private void PurchaseUpgrade()
         {
-            LaunchTextParticle("-" + NumberFormatter.AsSufixed(_nextCost));
+            OnPurchaseUpgrade?.Invoke(-_nextCost);
             resources.gold -= _nextCost;
             player.level++;
             _nextCost = formula.GetUpgradeCost(player.level);
@@ -60,13 +64,8 @@ namespace CvB
                 float goldIncrement = formula.GetGoldIncrement(player.level);
                 resources.gold += goldIncrement;
                 CheckIfCanUpgrade();
-                LaunchTextParticle("+" + NumberFormatter.AsSufixed(goldIncrement));
+                OnAttackEnemy?.Invoke(goldIncrement);
             };
-        }
-
-        private void LaunchTextParticle(string text)
-        {
-            textEffect.LaunchParticleAtMousePos(text);
         }
 
         private void CheckIfCanUpgrade()

@@ -5,18 +5,23 @@ using UnityEngine.UI;
 
 namespace CvB
 {
+    public delegate void CirclesResourceEvent(float ammount, Vector3 position);
+
     public class CirclesController : MonoBehaviour
     {
         public ResourceController resources;
         public FormulaController formula;
         public Button purchaseButton;
-        public TextEffectController textEffect;
 
         [Header("Circles setup")]
         public CirclePositions positionsList;
         public Circle circlePrototype;
         public float startPrice;
         public float priceMultiplier;
+
+        public event GameEvent OnPurchaseCircle;
+        public event CirclesResourceEvent OnPurchaseUpgrade;
+        public event CirclesResourceEvent OnCircleAttack;
 
         private List<Circle> _circles;
         private float _nextPrice;
@@ -60,31 +65,29 @@ namespace CvB
         private void PurchaseCircle()
         {
             float price = GetPrice();
-            textEffect.LaunchParticleAtMousePos("-" + NumberFormatter.AsSufixed(price));
             resources.gold -= price;
             CreateNewCircle();
+            OnPurchaseCircle?.Invoke(-price);
         }
 
         private void CreateNewCircle()
         {
             Circle circle = Instantiate(circlePrototype);
-            circle.level = 1;
             circle.transform.position = positionsList.positions[_circles.Count];
             circle.OnAttack += () =>
             {
                 float goldIncrement = formula.GetGoldIncrement(circle.level);
-                textEffect.LaunchParticleWithText("+" + NumberFormatter.AsSufixed(goldIncrement), circle.transform.position);
                 resources.gold += goldIncrement;
-
+                OnCircleAttack?.Invoke(goldIncrement, circle.transform.position);
             };
             circle.OnClick += () =>
             {
                 if (resources.gold >= formula.GetUpgradeCost(circle.level))
                 {
                     float upgradeCost = formula.GetUpgradeCost(circle.level);
-                    textEffect.LaunchParticleWithText("-" + NumberFormatter.AsSufixed(upgradeCost), circle.transform.position);
                     resources.gold -= upgradeCost;
                     circle.level++;
+                    OnPurchaseUpgrade?.Invoke(-upgradeCost, circle.transform.position);
                 }
             };
 

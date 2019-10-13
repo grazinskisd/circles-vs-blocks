@@ -300,7 +300,6 @@ MonoBehaviour:
   resources: {fileID: 186232407}
   formula: {fileID: 186232408}
   loadingPanel: {fileID: 1567739865}
-  textEffect: {fileID: 1096826650}
 --- !u!4 &186232405
 Transform:
   m_ObjectHideFlags: 0
@@ -330,7 +329,6 @@ MonoBehaviour:
   resources: {fileID: 186232407}
   formula: {fileID: 186232408}
   purchaseButton: {fileID: 1171560073}
-  textEffect: {fileID: 1096826650}
   positionsList: {fileID: 163863670}
   circlePrototype: {fileID: 330617979701492615, guid: 449b1b67c0cb5894887605f6df709974,
     type: 3}
@@ -867,6 +865,8 @@ MonoBehaviour:
   _particlePrototype: {fileID: 2861875538808706877, guid: 2e32bf6ed644c4e4e8521f0437ff1495,
     type: 3}
   _startCount: 100
+  _gameController: {fileID: 186232404}
+  _circlesController: {fileID: 186232406}
 --- !u!4 &1096826651
 Transform:
   m_ObjectHideFlags: 0
