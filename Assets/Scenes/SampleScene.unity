@@ -862,9 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05345887f7c07254a896d387e921d0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particlePrototype: {fileID: 2861875538808706877, guid: 2e32bf6ed644c4e4e8521f0437ff1495,
-    type: 3}
-  _startCount: 100
+  _setup: {fileID: 11400000, guid: 1a3a7ce8b98860f4db09000fc168ac0c, type: 2}
   _gameController: {fileID: 186232404}
   _circlesController: {fileID: 186232406}
 --- !u!4 &1096826651

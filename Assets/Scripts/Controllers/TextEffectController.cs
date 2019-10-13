@@ -8,10 +8,7 @@ namespace CvB
     {
         [Header("Setup effect")]
         [SerializeField]
-        private GoldEffectParticle _particlePrototype;
-
-        [SerializeField]
-        private int _startCount;
+        private TextEffectSetup _setup;
 
         [Header("Event handlers")]
         [SerializeField]
@@ -31,8 +28,8 @@ namespace CvB
 
         private void Start()
         {
-            _particlePool = new Stack<GoldEffectParticle>(_startCount);
-            for (int i = 0; i < _startCount; i++)
+            _particlePool = new Stack<GoldEffectParticle>(_setup.startParticleCount);
+            for (int i = 0; i < _setup.startParticleCount; i++)
             {
                 AddNewParticleToPool();
             }
@@ -42,27 +39,17 @@ namespace CvB
 
         private void SetupEvents()
         {
-            _gameController.OnAttackEnemy += LaunchFromMousePosition;
-            _gameController.OnPurchaseUpgrade += LaunchFromMousePosition;
+            _gameController.OnAttackEnemy += LaunchParticleAtMousePos;
+            _gameController.OnPurchaseUpgrade += LaunchParticleAtMousePos;
 
-            _circlesController.OnPurchaseCircle += LaunchFromMousePosition;
+            _circlesController.OnPurchaseCircle += LaunchParticleAtMousePos;
             _circlesController.OnCircleAttack += LaunchParticle;
             _circlesController.OnPurchaseUpgrade += LaunchParticle;
         }
 
-        private void LaunchParticle(float ammount, Vector3 position)
-        {
-            LaunchParticleWithText(GetTextForAmmount(ammount), position);
-        }
-
-        private void LaunchFromMousePosition(float ammount)
-        {
-            LaunchParticleAtMousePos(GetTextForAmmount(ammount));
-        }
-
         private void AddNewParticleToPool()
         {
-            var particle = Instantiate(_particlePrototype);
+            var particle = Instantiate(_setup.prototype);
             particle.transform.SetParent(transform);
             particle.Initialize(() =>
             {
@@ -71,16 +58,19 @@ namespace CvB
             AddParticleToPool(particle);
         }
 
-        private string GetTextForAmmount(float ammount)
+        private void AddParticleToPool(GoldEffectParticle particle)
         {
-            return (ammount > 0 ? "+" : "-") + NumberFormatter.AsSufixed(Math.Abs(ammount));
+            particle.gameObject.SetActive(false);
+            _particlePool.Push(particle);
         }
 
-        public void LaunchParticleWithText(string text, Vector3 position)
+        public void LaunchParticle(float ammount, Vector3 position)
         {
             if(_particlePool.Count > 0)
             {
                 var particle = _particlePool.Pop();
+                string text = GetTextForAmmount(ammount);
+                particle.SetColor(ammount > 0 ? _setup.positiveColor : _setup.negativeColor);
                 particle.gameObject.SetActive(true);
                 particle.transform.position = position;
                 particle.Launch(text);
@@ -88,22 +78,21 @@ namespace CvB
             else
             {
                 AddNewParticleToPool();
-                LaunchParticleWithText(text, position);
+                LaunchParticle(ammount, position);
             }
         }
 
-        private void LaunchParticleAtMousePos(string text)
+        private void LaunchParticleAtMousePos(float ammount)
         {
             Vector3 position = _camera.ScreenToWorldPoint(Input.mousePosition);
             position.z = -4;
 
-            LaunchParticleWithText(text, position);
+            LaunchParticle(ammount, position);
         }
 
-        private void AddParticleToPool(GoldEffectParticle particle)
+        private string GetTextForAmmount(float ammount)
         {
-            particle.gameObject.SetActive(false);
-            _particlePool.Push(particle);
+            return (ammount > 0 ? "+" : "-") + NumberFormatter.AsSufixed(Math.Abs(ammount));
         }
     }
 }

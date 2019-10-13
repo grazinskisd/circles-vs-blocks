@@ -49,10 +49,7 @@ namespace CvB
         {
             if (!_areAllCirclesPurchased)
             {
-                if (resources.gold >= _nextPrice && _circles.Count < positionsList.positions.Count)
-                {
-                    purchaseButton.interactable = true;
-                }
+                purchaseButton.interactable = resources.gold >= _nextPrice && _circles.Count < positionsList.positions.Count;
 
                 if (_circles.Count >= positionsList.positions.Count)
                 {

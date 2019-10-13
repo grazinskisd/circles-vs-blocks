@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85c7723430837147a85d189b004b701, type: 3}
+  m_Name: Text effect setup 1
+  m_EditorClassIdentifier: 
+  prototype: {fileID: 2861875538808706877, guid: 2e32bf6ed644c4e4e8521f0437ff1495,
+    type: 3}
+  startParticleCount: 100
+  positiveColor: {r: 0.9764706, g: 1, b: 0.5882353, a: 1}
+  negativeColor: {r: 0.5803922, g: 0, b: 0.06666667, a: 1}

@@ -30,5 +30,10 @@ namespace CvB
                 .DOLocalMoveY(transform.localPosition.y + _localYOffset, _lifetimeInSeconds)
                 .OnComplete(_onComplete);
         }
+
+        public void SetColor(Color color)
+        {
+            _label.color = color;
+        }
     }
 }
