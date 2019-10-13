@@ -18,7 +18,7 @@ if enough gold has been gathered.
 * Whenever a purchase is made or some resources are earned, a text element appears on the screen and shows the ammount.
 * Since large numbers are used, for more pleasant display a truncated version of the number is used, for example 1000000 is 
 displayed as 1M.
-* Scaling coefficients are downloaded and parsed from a file in my [google drive](drive.google.com/uc?export=download&id=1MqfzG1bmWFIkQWznUmilTtXuVNBAWZuM), if they can not be reached for some reason, the app
+* Scaling coefficients are downloaded and parsed from a file in my google drive, if the file can not be reached for some reason, the app
 will not go past "Loading..." screen. However, it is possible to enable debug mode in the editor and not rely on loading this file.
 * I used this [generated color pallete.](http://paletton.com/#uid=75z1w0krZuehqDamtvNuGozzjjr)
 
