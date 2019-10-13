@@ -11,8 +11,15 @@ namespace CvB
         public FormulaController formula;
 
         public GameObject loadingPanel;
+        public TextEffectController textEffect;
 
         private float _nextCost = 0;
+        private Camera _camera;
+
+        private void Awake()
+        {
+            _camera = Camera.main;
+        }
 
         private void Start()
         {
@@ -49,9 +56,18 @@ namespace CvB
         {
             enemy.OnClicked += () =>
             {
-                resources.gold += formula.GetGoldIncrement(player.level);
+                float goldIncrement = formula.GetGoldIncrement(player.level);
+                resources.gold += goldIncrement;
                 CheckIfCanUpgrade();
+                CreateTextParticle(NumberFormatter.AsSufixed(goldIncrement));
             };
+        }
+
+        private void CreateTextParticle(string text)
+        {
+            Vector3 position = _camera.ScreenToWorldPoint(Input.mousePosition);
+            position.z = -4;
+            textEffect.LaunchParticleWithText(text, position);
         }
 
         private void CheckIfCanUpgrade()
