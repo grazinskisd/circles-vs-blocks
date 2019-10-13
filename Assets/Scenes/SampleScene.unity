@@ -412,7 +412,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.07450981, g: 0.6, b: 0.5137255, a: 0}
+  m_BackGroundColor: {r: 0.49019608, g: 0.39607844, b: 0.76862746, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.94509804, g: 0.4509804, b: 0.11764706, a: 1}
+  m_Color: {r: 0.94509804, g: 0.80784315, b: 0.11764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.94509804, g: 0.4509804, b: 0.11764706, a: 1}
+  m_Color: {r: 0.94509804, g: 0.80784315, b: 0.11764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1435,8 +1435,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288086009
-  m_fontColor: {r: 0.97650623, g: 1, b: 0.5896226, a: 1}
+    rgba: 4285851903
+  m_fontColor: {r: 1, g: 0.9098039, b: 0.45490196, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
