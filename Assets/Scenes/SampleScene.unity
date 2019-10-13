@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 186232407}
   - component: {fileID: 186232406}
   - component: {fileID: 186232408}
+  - component: {fileID: 186232409}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -292,7 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b32c1a3a0df2a4a9ed1eb2fc95b81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2026489845}
+  player: {fileID: 186232409}
+  enemy: {fileID: 2026489845}
   upgradeView: {fileID: 552895534}
   resources: {fileID: 186232407}
   formula: {fileID: 186232408}
@@ -355,6 +357,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d38f6e5d1f745469aef25de586cf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &186232409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186232403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c3343d553e1684b8f60d357d0ed68e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1604,7 @@ GameObject:
   - component: {fileID: 2026489841}
   - component: {fileID: 2026489845}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1676,10 +1691,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026489840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c3343d553e1684b8f60d357d0ed68e, type: 3}
+  m_Script: {fileID: 11500000, guid: cd3b7d793c92881489cc00a876ea93ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _level: 1
 --- !u!1001 &211474453656755454
 PrefabInstance:
   m_ObjectHideFlags: 0

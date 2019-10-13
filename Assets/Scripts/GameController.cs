@@ -5,6 +5,7 @@ namespace CvB
     public class GameController : MonoBehaviour
     {
         public Player player;
+        public Enemy enemy;
         public UpgradeView upgradeView;
         public ResourceController resources;
         public FormulaController formula;
@@ -39,7 +40,7 @@ namespace CvB
 
         private void SetupEnemyListener()
         {
-            player.OnClicked += () =>
+            enemy.OnClicked += () =>
             {
                 resources.gold += formula.GetGoldIncrement(player.level);
                 CheckIfCanUpgrade();
