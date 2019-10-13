@@ -6,6 +6,9 @@ Unity version: 2018.4.0f1
 
 Link to apk: https://drive.google.com/file/d/1eqTu5c_5z-vFlHDqVckAPkP_ctcTJ2mO/view?usp=sharing
 
+![Screenshot 1](Screenshots/Screenshot_1.png "Initial")
+![Screenshot 1](Screenshots/Screenshot_2.png "After circles have been purchased")
+
 * Clicking on the red square in the middle of the screen gives gold
 * Current gold ammount is displayed on the top of the screen
 * There are 2 buttons on the bottom panel, left one is for upgrading your level and right one is for purchasing helpers (circles).
