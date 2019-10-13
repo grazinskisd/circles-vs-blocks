@@ -21,3 +21,10 @@ displayed as 1M.
 * Scaling coefficients are downloaded and parsed from a file in my google drive, if they can not be reached for some reason, the app
 will not go past "Loading..." screen. However, it is possible to enable debug mode in the editor and not rely on loading this file.
 * I used this generated color pallete: http://paletton.com/#uid=75z1w0krZuehqDamtvNuGozzjjr
+
+# Scene layout
+
+# File layout
+
+# If there was more time
+* Add time tracking when application is exited, so that the player can be rewarded with resources pasively earned while the app was closed.
