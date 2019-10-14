@@ -35,8 +35,7 @@ will not go past "Loading..." screen. However, it is possible to enable debug mo
   - **GameController**: Monst game controlling scripts are attatched to this object. No particular reason for using one object.
   - **TextEffectController**: Parent and controller for a pool of the text effects whenever a purchase, attack or an upgrade is done.
 
-# File layout
-**Scripts**
+# Scripts
 - **Behaviours**
   - `Character.cs`: Base class for `Player` and `Circle` and just contains a private field `_level`. If more stats could be associated with player and character, they can be put here.
   - `Circle.cs`: Exposes click and attack evets. Handles auto-attacking for himself, but if there were more circles this loop could be moved out to `CirclesController`
